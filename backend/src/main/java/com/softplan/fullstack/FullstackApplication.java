@@ -1,12 +1,12 @@
-package com.softplan.fullstack.softplan;
+package com.softplan.fullstack;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SoftplanApplication {
+public class FullstackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SoftplanApplication.class, args);
+		SpringApplication.run(FullstackApplication.class, args);
 	}
 }

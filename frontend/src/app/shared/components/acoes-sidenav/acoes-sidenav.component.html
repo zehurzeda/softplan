@@ -1,0 +1,12 @@
+<div [ngStyle]="{'min-width': isMobile ? '80vw' : '250px'}" style="max-width: 80vw">
+  <div class="row">
+    <div class="col">
+      <div class="float-right">
+        <button mat-icon-button (click)=fecharSideBarAcoes()>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

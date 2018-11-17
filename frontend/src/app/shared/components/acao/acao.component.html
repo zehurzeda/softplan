@@ -1,0 +1,7 @@
+<div class="control-sidebar">
+  <div class="action-group">
+      <button *ngFor="let btn of botoes" matTooltip="{{btn.tooltip}}" matTooltipPosition="before" type="button" class="btn btn-{{btn.cor}}" routerLinkActive="active" routerLink="{{btn.rota}}" (click)="onClickAcao()">
+          <mat-icon>{{btn.icone}}</mat-icon>
+      </button>
+  </div>
+</div>
