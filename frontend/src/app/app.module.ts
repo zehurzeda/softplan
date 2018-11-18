@@ -14,7 +14,7 @@ import { MaterialModule } from './material/material.module';
   declarations: [
     AppComponent,
     HomeComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

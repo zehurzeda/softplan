@@ -7,7 +7,13 @@ const routes: Routes = [
     path: 'administrador', loadChildren: './administrador/administrador.module#AdministradorModule'
   },
   {
-    path: '', component: HomeComponent
+    path: 'usuario-triador', loadChildren: './usuario-triador/usuario-triador.module#UsuarioTriadorModule'
+  },
+  {
+    path: '', redirectTo: '/home', pathMatch: 'full'
+  },
+  {
+    path: 'home', component: HomeComponent
   }
 ];
 

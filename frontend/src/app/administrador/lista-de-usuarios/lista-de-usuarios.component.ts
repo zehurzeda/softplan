@@ -52,6 +52,9 @@ export class ListaDeUsuariosComponent implements OnInit {
           this.toastr.success("Usuário removido com sucesso!");
         });
       }
+    }, error => {
+      console.log(error);
+      this.toastr.error("Erro ao excluir o usuário, tente novamente!");
     });
   }
 }
