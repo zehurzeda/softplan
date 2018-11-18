@@ -1,0 +1,8 @@
+.cadastro-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-content > * {
+  width: 100%;
+}

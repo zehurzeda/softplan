@@ -1,6 +1,7 @@
 package com.softplan.fullstack.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -38,6 +39,10 @@ public class UsuarioService {
 
 		return usuario.get();
 	}
+	
+	public Usuario getUsuarioByEmail(final String email) {
+		return this.repository.findByEmail(email);
+	}
 
 	public Usuario salvar(UsuarioDTO dto) {
 		dto.setSenha(this.bcryptEncoder.encode((dto.getSenha())));
@@ -57,7 +62,12 @@ public class UsuarioService {
 		}
 
 		dto.setId(id);
-		dto.setSenha(this.bcryptEncoder.encode((dto.getSenha())));
+		
+		if(Objects.nonNull(dto.getSenha()) && !dto.getSenha().isEmpty()) {			
+			dto.setSenha(this.bcryptEncoder.encode((dto.getSenha())));
+		} else {
+			dto.setSenha(usuarioOpt.get().getSenha());
+		}
 		
 		return this.repository.save(this.convertUsuarioDtoToUsuario(dto));
 	}

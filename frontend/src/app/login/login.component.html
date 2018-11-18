@@ -3,10 +3,11 @@
     <mat-card-header style="width: 250px"> <mat-card-title>Login</mat-card-title> </mat-card-header>
     <mat-card-content>
       <div>
-        <form class="login-content" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form class="form-content" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <mat-form-field>
-            <input matInput formControlName="nomeDeUsuario" placeholder="Nome de usuário" required/>
-            <mat-error *ngIf="form.nomeDeUsuario.hasError('required')">Favor informe um nome de usuário!</mat-error>
+            <input matInput formControlName="email" placeholder="Email" required/>
+            <mat-error *ngIf="form.email.hasError('required')">Favor informe o e-mail!</mat-error>
+            <mat-error *ngIf="form.email.hasError('email')">E-mail inválido!</mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="senha" type="password" placeholder="Senha" required/> 

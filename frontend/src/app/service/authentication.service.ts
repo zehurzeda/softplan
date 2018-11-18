@@ -1,3 +1,4 @@
+import { UsuarioService } from './usuario.service';
 import { environment } from 'src/environments/environment';
 import { tap, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -11,14 +12,14 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private usuarioService: UsuarioService) {}
 
   private setSession(authResult) {
     console.log(authResult);
     const token = authResult.token;
     const payload: any = jwtDecode(token);
     const expiresAt = moment.unix(payload.exp);
-
+    
     localStorage.setItem('token', token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }

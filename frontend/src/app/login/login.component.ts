@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   loginForm = this.formBuilder.group({
-    nomeDeUsuario: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     senha: ['', Validators.required]
   });
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.authenticationService
-      .login(this.form.nomeDeUsuario.value, this.form.senha.value)
+      .login(this.form.email.value, this.form.senha.value)
       .subscribe(
         success => this.router.navigate(['home']),
         error => {

@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
     HomeComponent,
     MatConfirmDialogComponent,
     LoginComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,

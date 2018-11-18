@@ -5,20 +5,27 @@
 </div>
 <div class="row">
   <div class="col">
-    <mat-form-field style="width: 100%">
-      <input
-        matInput
-        placeholder="Nome"
-        [formControl]="nomeForm"
-        required
-      />
-      <mat-error *ngIf="nomeForm.hasError('required')">Insira o nome do usuário</mat-error>
-      <mat-error *ngIf="nomeForm.hasError('minLength')">O nome deve conter mais de 4 caracteres</mat-error>
-    </mat-form-field>
-  </div>
-</div>
-<div class="row mt-2">
-  <div class="col">
-    <button mat-raised-button (click)="salvar()" class="btn-block" color="primary"><mat-icon>check</mat-icon></button>
+    <form class="form-content" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput formControlName="nome" placeholder="Nome" required/>
+        <mat-error *ngIf="form.nome.hasError('required')">Favor informe o nome!</mat-error>
+        <mat-error *ngIf="form.nome.hasError('minLength')">E-mail inválido!</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="email" placeholder="Email" required/>
+        <mat-error *ngIf="form.email.hasError('required')">Favor informe o e-mail!</mat-error>
+        <mat-error *ngIf="form.email.hasError('email')">E-mail inválido!</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="senha" type="password" placeholder="Senha"/>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Perfil" [compareWith]="compareFn" formControlName="roles" multiple required>
+          <mat-option *ngFor="let role of roles" [value]="role">{{role.nome}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.roles.hasError('required')">Favor informe ao menos um perfil!</mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="primary" class="mt-2 btn-block"><mat-icon>check</mat-icon></button>
+    </form>
   </div>
 </div>

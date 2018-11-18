@@ -17,7 +17,7 @@ export class ListaDeUsuariosComponent implements OnInit {
 
   private usuarios: UsuarioModel[] = [];
 
-  private displayedColumns: string[] = ['id', 'nome', 'acao'];
+  private displayedColumns: string[] = ['nome', 'email', 'role', 'acao'];
 
   constructor(
     private usuarioService: UsuarioService,
@@ -40,6 +40,7 @@ export class ListaDeUsuariosComponent implements OnInit {
   getUsuarios() {
     this.usuarioService.getAllUsuarios().subscribe(res => {
       this.usuarios = res;
+      console.log(this.usuarios)
     });
   }
 
@@ -52,9 +53,6 @@ export class ListaDeUsuariosComponent implements OnInit {
           this.toastr.success("Usuário removido com sucesso!");
         });
       }
-    }, error => {
-      console.log(error);
-      this.toastr.error("Erro ao excluir o usuário, tente novamente!");
     });
   }
 }

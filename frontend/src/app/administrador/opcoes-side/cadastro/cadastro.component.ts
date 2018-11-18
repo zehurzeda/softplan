@@ -1,8 +1,10 @@
+import { RoleModel } from './../../../model/role.model';
 import { UsuarioModel } from 'src/app/model/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { RoleService } from 'src/app/service/role.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -10,33 +12,49 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
-  nomeForm = new FormControl('', [
-    Validators.required,
-    Validators.minLength(4)
-  ]);
+
+  private roles: RoleModel[] = [];
+
+  usuarioForm = this.formBuilder.group({
+    nome: ['', [Validators.required, Validators.minLength(4)]],
+    email: ['', [Validators.required, Validators.email]],
+    senha: ['', Validators.required],
+    roles: ['', Validators.required]
+  })
 
   constructor(
+    private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private roleService: RoleService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.roleService.getAllRoles().subscribe(res => {
+      this.roles = res;
+    });
+  }
+  
+  get form() {
+    return this.usuarioForm.controls;
+  }
 
-  salvar() {
-    if (this.nomeForm.valid) {
-      this.usuarioService
-        .salvarUsuario(new UsuarioModel(null, this.nomeForm.value))
-        .subscribe(res => {
-          this.nomeForm.reset();
-          this.usuarioService.atualizarUsuarios();
-          this.toastr.success('Usuário cadastrado com sucesso');
-        },
-        error => {
-          console.log(error);
-          this.toastr.error('Erro ao salvar o usuário, tente novamente!');
-        });
-    } else {
-      this.nomeForm.markAsTouched();
+  onSubmit() {
+    if (this.usuarioForm.invalid) {
+      return;
     }
+
+    this.usuarioService
+      .salvarUsuario(this.usuarioForm.value)
+      .subscribe(res => {
+        this.usuarioForm.reset();
+        this.usuarioForm.markAsPristine();
+        this.usuarioService.atualizarUsuarios();
+        this.toastr.success('Usuário cadastrado com sucesso');
+      },
+      error => {
+        console.log(error);
+        this.toastr.error('Erro ao salvar o usuário, tente novamente!');
+      });
   }
 }
