@@ -21,6 +21,7 @@ import * as Material from "@angular/material";
     Material.MatPaginatorModule,
     Material.MatSortModule,
     Material.MatDialogModule,
+    Material.MatCardModule
 
   ],
   exports: [
@@ -40,6 +41,7 @@ import * as Material from "@angular/material";
     Material.MatPaginatorModule,
     Material.MatSortModule,
     Material.MatDialogModule,
+    Material.MatCardModule
 
   ],
   declarations: []

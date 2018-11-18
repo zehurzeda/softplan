@@ -1,0 +1,14 @@
+.login-container {
+    background-color: #8f9cb5;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-content > * {
+  width: 100%;
+}

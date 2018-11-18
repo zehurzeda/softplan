@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.softplan.fullstack.model.Processo;
-import com.softplan.fullstack.repository.ProcessoRepository;
+import com.softplan.fullstack.model.Role;
+import com.softplan.fullstack.repository.RoleRepository;
 
 @Service
-public class ProcessoService {
+public class RoleService {
 	
 	@Autowired
-	private ProcessoRepository repository;
+	private RoleRepository repository;
 	
-	public List<Processo> getProcessos() {
+	public List<Role> getAllRoles() {
 		return this.repository.findAll();
 	}
 	

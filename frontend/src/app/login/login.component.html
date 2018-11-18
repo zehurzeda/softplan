@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center align-items-center login-container">
+  <mat-card>
+    <mat-card-header style="width: 250px"> <mat-card-title>Login</mat-card-title> </mat-card-header>
+    <mat-card-content>
+      <div>
+        <form class="login-content" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <input matInput formControlName="nomeDeUsuario" placeholder="Nome de usuário" required/>
+            <mat-error *ngIf="form.nomeDeUsuario.hasError('required')">Favor informe um nome de usuário!</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="senha" type="password" placeholder="Senha" required/> 
+            <mat-error *ngIf="form.senha.hasError('required')">Favor informe a senha!</mat-error>
+          </mat-form-field>
+          <button mat-flat-button color="primary" class="mt-2 btn-block"><mat-icon>check</mat-icon></button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

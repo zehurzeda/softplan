@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.softplan.fullstack.model.Processo;
-import com.softplan.fullstack.service.ProcessoService;
+import com.softplan.fullstack.model.Role;
+import com.softplan.fullstack.service.RoleService;
 
 @RestController
-@RequestMapping("/processo")
-public class ProcessoController {
+@RequestMapping("/role")
+public class RoleController {
 	
 	@Autowired
-	private ProcessoService service;
+	private RoleService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Processo> getAllProcessos() {
-		return this.service.getProcessos();
+	public List<Role> getAllRoles() {
+		return this.service.getAllRoles();
 	}
+	
 }

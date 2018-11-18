@@ -1,4 +1,4 @@
-package com.softplan.fullstack.entity;
+package com.softplan.fullstack.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
