@@ -29,12 +29,16 @@ public class UsuarioService {
 	public List<Usuario> getAllUsuarios() {
 		return repository.findAll();
 	}
+	
+	public List<Usuario> getAllUsuariosByRole(final String role) {
+		return repository.findAllByRoles_Nome(role);
+	}
 
 	public Usuario getUsuarioPorId(long id) {
 		Optional<Usuario> usuario = this.repository.findById(id);
 
 		if (!usuario.isPresent()) {
-			throw new UsuarioNotFoundException("id-" + id);
+			throw new UsuarioNotFoundException("Usuário com id " + id + " não encontrado");
 		}
 
 		return usuario.get();
@@ -70,10 +74,6 @@ public class UsuarioService {
 		}
 		
 		return this.repository.save(this.convertUsuarioDtoToUsuario(dto));
-	}
-	
-	private UsuarioDTO convertUsuarioToUsuarioDto(final Usuario usuario) {
-		return this.modelMapper.map(usuario, UsuarioDTO.class);
 	}
 	
 	private Usuario convertUsuarioDtoToUsuario(final UsuarioDTO usuarioDTO) {

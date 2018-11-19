@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col d-flex justify-content-center">
+    <h3>Cadastro de Usuário</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <form class="form-content" [formGroup]="processoForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput formControlName="numeroProcesso" placeholder="Numero do processo" required/>
+        <mat-error *ngIf="form.numeroProcesso.hasError('required')">Favor informe um número!</mat-error>
+        <mat-error *ngIf="form.numeroProcesso.hasError('minLength')">São necessários, no mínimo, 4 dígitos!</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput formControlName="descricao" placeholder="Descrição" required></textarea>
+        <mat-error *ngIf="form.descricao.hasError('required')">Favor informe a descrição</mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="primary" class="mt-2 btn-block"><mat-icon>check</mat-icon></button>
+    </form>
+  </div>
+</div>
+  

@@ -1,12 +1,10 @@
 package com.softplan.fullstack.controller;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.softplan.fullstack.dto.UsuarioDTO;
-import com.softplan.fullstack.model.LoginUser;
-import com.softplan.fullstack.model.Role;
 import com.softplan.fullstack.model.Usuario;
 import com.softplan.fullstack.service.UsuarioService;
 
@@ -31,6 +27,11 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Usuario> getAllUsuarios() {
 		return this.service.getAllUsuarios();
+	}
+	
+	@RequestMapping(value = "/role/{role}", method = RequestMethod.GET)
+	public List<Usuario> getAllUsuariosByRole(@PathVariable String role) {
+		return this.service.getAllUsuariosByRole(role);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

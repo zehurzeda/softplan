@@ -1,12 +1,14 @@
 package com.softplan.fullstack.model;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Processo {
@@ -17,8 +19,14 @@ public class Processo {
 
 	private String numeroProcesso;
 
-	@OneToMany
-	private List<ProcessoParecerUsuario> usuariosParecer;
+	private String descricao;
+
+	@ManyToOne
+	@JsonIgnore
+	private Usuario criador;
+
+	@JsonIgnore
+	private LocalDateTime horaCriacao;
 
 	public Long getId() {
 		return id;
@@ -36,12 +44,28 @@ public class Processo {
 		this.numeroProcesso = numeroProcesso;
 	}
 
-	public List<ProcessoParecerUsuario> getUsuariosParecer() {
-		return usuariosParecer;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setUsuariosParecer(List<ProcessoParecerUsuario> usuariosParecer) {
-		this.usuariosParecer = usuariosParecer;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Usuario getCriador() {
+		return criador;
+	}
+
+	public void setCriador(Usuario criador) {
+		this.criador = criador;
+	}
+
+	public LocalDateTime getHoraCriacao() {
+		return horaCriacao;
+	}
+
+	public void setHoraCriacao(LocalDateTime horaCriacao) {
+		this.horaCriacao = horaCriacao;
 	}
 
 }

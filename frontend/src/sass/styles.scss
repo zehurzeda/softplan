@@ -114,3 +114,12 @@ app-toolbar {
   right: 0;
   z-index: 2;
 }
+
+.cadastro-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-content > * {
+  width: 100%;
+}

@@ -1,11 +1,11 @@
 <div class="page-container">
-    <mat-sidenav-container (backdropClick)="fecharSideBarAcoes()" class="sidenav-container">
-      <mat-sidenav #snav [mode]="mode.value" fixedInViewport="true" fixedTopGap="0" position="end" class="sidenav">
-        <acoes-sidenav [isMobile]="isMobile"></acoes-sidenav>
-      </mat-sidenav>
-      <mat-sidenav-content class="sidenav-content">
-        <app-acao [botoes]="acoes"></app-acao>
-        <app-lista-processos></app-lista-processos>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+  <mat-sidenav-container (backdropClick)="fecharSideBarAcoes()" class="sidenav-container">
+    <mat-sidenav #snav [mode]="mode.value" position="end" class="sidenav">
+      <acoes-sidenav [isMobile]="isMobile"></acoes-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+      <app-acao [botoes]="acoes"></app-acao>
+      <app-lista-processos></app-lista-processos>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

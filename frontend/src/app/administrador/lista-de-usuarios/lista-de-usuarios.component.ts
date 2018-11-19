@@ -1,23 +1,24 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { UsuarioModel } from 'src/app/model/usuario.model';
 import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'src/app/service/dialog.service';
 import { SideNavService } from 'src/app/service/side-nav.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lista-de-usuarios',
   templateUrl: './lista-de-usuarios.component.html',
   styleUrls: ['./lista-de-usuarios.component.scss']
 })
-export class ListaDeUsuariosComponent implements OnInit {
+export class ListaDeUsuariosComponent implements OnInit, OnDestroy {
 
   @Input()
   private isMobile: boolean;
 
   private usuarios: UsuarioModel[] = [];
 
-  private displayedColumns: string[] = ['nome', 'email', 'role', 'acao'];
+  private subscription: Subscription;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -27,7 +28,7 @@ export class ListaDeUsuariosComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.usuarioService.usuariosAtualizados$.subscribe(() => {
+    this.subscription = this.usuarioService.usuariosAtualizados$.subscribe(() => {
       this.getUsuarios();
     });
     this.usuarioService.atualizarUsuarios();
@@ -40,7 +41,6 @@ export class ListaDeUsuariosComponent implements OnInit {
   getUsuarios() {
     this.usuarioService.getAllUsuarios().subscribe(res => {
       this.usuarios = res;
-      console.log(this.usuarios)
     });
   }
 
@@ -54,5 +54,9 @@ export class ListaDeUsuariosComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

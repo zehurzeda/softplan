@@ -9,7 +9,7 @@
       <mat-form-field>
         <input matInput formControlName="nome" placeholder="Nome" required/>
         <mat-error *ngIf="form.nome.hasError('required')">Favor informe o nome!</mat-error>
-        <mat-error *ngIf="form.nome.hasError('minLength')">E-mail inválido!</mat-error>
+        <mat-error *ngIf="form.nome.hasError('minLength')">São necessários, no mínimo, 4 dígitos!</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput formControlName="email" placeholder="Email" required/>

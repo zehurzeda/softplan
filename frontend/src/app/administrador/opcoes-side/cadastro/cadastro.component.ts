@@ -5,6 +5,7 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { RoleService } from 'src/app/service/role.service';
+import { SideNavService } from 'src/app/service/side-nav.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -26,13 +27,16 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
     private toastr: ToastrService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private sidenavService: SideNavService,
   ) {}
 
   ngOnInit() {
     this.roleService.getAllRoles().subscribe(res => {
       this.roles = res;
     });
+
+    this.sidenavService.open();
   }
   
   get form() {
@@ -50,6 +54,7 @@ export class CadastroComponent implements OnInit {
         this.usuarioForm.reset();
         this.usuarioForm.markAsPristine();
         this.usuarioService.atualizarUsuarios();
+        this.sidenavService.close();
         this.toastr.success('Usuário cadastrado com sucesso');
       },
       error => {
