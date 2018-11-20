@@ -22,22 +22,22 @@ public class UsuarioService {
 
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
 
 	public List<Usuario> getAllUsuarios() {
 		return repository.findAll();
 	}
-	
+
 	public List<Usuario> getAllUsuariosByRole(final String role) {
 		return repository.findAllByRoles_Nome(role);
 	}
-	
-	public List<Usuario> getAllUsuariosByRoleAndIdProcessoIsDiferent(final String role, final long idProcesso){
-		return repository.findAllByRoles_NomeAndPareceresUsuarioIsNullOrPareceresUsuario_ProcessoIdIsNot(role, idProcesso);
+
+	public List<Usuario> getAllUsuariosByRoleAndIdProcessoIsDiferent(final String role, final long idProcesso) {
+		return repository.findAllUsuariosDisponiveisByRole(role, idProcesso);
 	}
-	
+
 	public Usuario getUsuarioPorId(long id) {
 		Optional<Usuario> usuario = this.repository.findById(id);
 
@@ -47,7 +47,7 @@ public class UsuarioService {
 
 		return usuario.get();
 	}
-	
+
 	public Usuario getUsuarioByEmail(final String email) {
 		return this.repository.findByEmail(email);
 	}
@@ -56,7 +56,6 @@ public class UsuarioService {
 		dto.setSenha(this.bcryptEncoder.encode((dto.getSenha())));
 		return this.repository.save(this.convertUsuarioDtoToUsuario(dto));
 	}
-
 
 	public void deletar(long id) {
 		this.repository.deleteById(id);
@@ -70,16 +69,16 @@ public class UsuarioService {
 		}
 
 		dto.setId(id);
-		
-		if(Objects.nonNull(dto.getSenha()) && !dto.getSenha().isEmpty()) {			
+
+		if (Objects.nonNull(dto.getSenha()) && !dto.getSenha().isEmpty()) {
 			dto.setSenha(this.bcryptEncoder.encode((dto.getSenha())));
 		} else {
 			dto.setSenha(usuarioOpt.get().getSenha());
 		}
-		
+
 		return this.repository.save(this.convertUsuarioDtoToUsuario(dto));
 	}
-	
+
 	private Usuario convertUsuarioDtoToUsuario(final UsuarioDTO usuarioDTO) {
 		return this.modelMapper.map(usuarioDTO, Usuario.class);
 	}

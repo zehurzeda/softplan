@@ -2,7 +2,7 @@ import {  UsuarioParecerProcessoModel } from './../model/usuario-parecer-service
 import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { UsuarioModel } from '../model/usuario.model';
 
 @Injectable({
@@ -11,6 +11,10 @@ import { UsuarioModel } from '../model/usuario.model';
 export class UsuarioParecerProcessoService {
 
   private route: string;
+
+  private processosPendentesSource = new Subject<any>();
+
+  processosPendentesAtualizados$ = this.processosPendentesSource.asObservable();
 
   constructor(private http: HttpClient) {
     this.route = `${environment.URL_SERVER_API}/parecer-processo`;
@@ -34,6 +38,10 @@ export class UsuarioParecerProcessoService {
 
   desvincularUsuariosProcesso(idProcesso: number, usuariosProcesso: UsuarioParecerProcessoModel[]): Observable<any> {
     return this.http.post(`${this.route}/${idProcesso}/desvincular`, usuariosProcesso);
+  }
+
+  atualizarProcessosPendentes() {
+    this.processosPendentesSource.next();
   }
 
 }

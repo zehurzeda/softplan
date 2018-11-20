@@ -9,17 +9,23 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
-        path: 'administrador',
+        path: 'admin',
         data: { auth: 'ROLE_ADMIN' },
         loadChildren:
           './administrador/administrador.module#AdministradorModule',
         canActivate: [AuthGuard]
       },
       {
-        path: 'usuario-triador',
+        path: 'triagem',
         data: { auth: 'ROLE_TRIADOR' },
         loadChildren:
           './usuario-triador/usuario-triador.module#UsuarioTriadorModule',
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'parecer',
+        data: { auth: 'ROLE_FINALIZADOR' },
+        loadChildren: './parecer/parecer.module#ParecerModule',
         canActivate: [AuthGuard]
       }
     ]

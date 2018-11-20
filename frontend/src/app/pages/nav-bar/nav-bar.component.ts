@@ -17,12 +17,10 @@ export class Link {
 })
 export class NavBarComponent implements OnInit {
   private links: Link[] = [
-    new Link('Administrador', 'administrador', 'ROLE_ADMIN'),
-    new Link('Triagem', 'usuario-triador', 'ROLE_TRIADOR'),
+    new Link('Administrador', 'admin', 'ROLE_ADMIN'),
+    new Link('Triagem', 'triagem', 'ROLE_TRIADOR'),
     new Link('Parecer', 'parecer', 'ROLE_FINALIZADOR')
   ];
-
-  private background = 'primary';
 
   constructor(private authService: AuthenticationService) {}
 

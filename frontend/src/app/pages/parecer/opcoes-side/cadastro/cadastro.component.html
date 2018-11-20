@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col d-flex justify-content-center">
+    <h3>Cadastro de Processo</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <form class="form-content" [formGroup]="parecerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <textarea matInput formControlName="parecer" placeholder="Parecer" required></textarea>
+        <mat-error *ngIf="form.parecer.hasError('required')">Favor informe o parecer!</mat-error>
+        <mat-error *ngIf="form.parecer.hasError('minLength')">São necessários, no mínimo, 4 dígitos!</mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="primary" class="mt-2 btn-block"><mat-icon>check</mat-icon></button>
+    </form>
+  </div>
+</div>
+  

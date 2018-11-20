@@ -26,11 +26,21 @@ public class UsuarioParecerProcessoService {
 
 	@Autowired
 	private ProcessoService processoService;
-
+	
 	public List<UsuarioParecerProcesso> getAllPendentesByProcesso(final long idProcesso) {
 		return repository.findAllByProcessoIdAndPendenteIsTrue(idProcesso);
 	}
-
+	
+	public UsuarioParecerProcesso findById(final long idUsuarioProcesso) {
+		Optional<UsuarioParecerProcesso> optional = this.repository.findById(idUsuarioProcesso);
+		
+		if(!optional.isPresent()) {
+			throw new UsuarioParecerProcessoNotFoundException("Não encontrado vínculo com id " + idUsuarioProcesso);
+		}
+		
+		return optional.get();
+	}
+	
 	public List<UsuarioParecerProcesso> getAllPendentesByUsuarioLogado(UserDetails userDetails) {
 		return repository.findAllByUsuarioEmailAndPendenteIsTrue(userDetails.getUsername());
 	}
@@ -41,6 +51,10 @@ public class UsuarioParecerProcessoService {
 		usuarioParecerProcesso.setProcesso(this.processoService.getProcessoById(dto.getProcessoId()));
 
 		return this.repository.save(usuarioParecerProcesso);
+	}
+	
+	public UsuarioParecerProcesso save(final UsuarioParecerProcesso entity) {
+		return this.repository.save(entity);
 	}
 
 	public List<UsuarioParecerProcesso> saveAllByIdProcessoAndUsuarios(long idProcesso, List<Usuario> usuarios) {

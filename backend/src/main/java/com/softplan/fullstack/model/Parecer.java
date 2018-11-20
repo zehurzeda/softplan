@@ -1,5 +1,6 @@
 package com.softplan.fullstack.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,12 +17,13 @@ public class Parecer {
 	private Long id;
 
 	@NotNull
+	@Column(length = 1024)
 	private String parecer;
-	
+
 	@NotNull
 	@OneToOne(fetch = FetchType.LAZY)
 	private UsuarioParecerProcesso parecerProcesso;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -36,6 +38,14 @@ public class Parecer {
 
 	public void setParecer(String parecer) {
 		this.parecer = parecer;
+	}
+
+	public UsuarioParecerProcesso getParecerProcesso() {
+		return parecerProcesso;
+	}
+
+	public void setParecerProcesso(UsuarioParecerProcesso parecerProcesso) {
+		this.parecerProcesso = parecerProcesso;
 	}
 
 }

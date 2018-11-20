@@ -23,10 +23,6 @@ public class UsuarioParecerProcesso {
 	@ManyToOne
 	private Usuario usuario;
 
-	@OneToOne(mappedBy = "parecerProcesso", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	@JsonIgnore
-	private Parecer parecer;
-
 	@NotNull
 	@ManyToOne
 	private Processo processo;
@@ -47,14 +43,6 @@ public class UsuarioParecerProcesso {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Parecer getParecer() {
-		return parecer;
-	}
-
-	public void setParecer(Parecer parecer) {
-		this.parecer = parecer;
 	}
 
 	public Processo getProcesso() {
