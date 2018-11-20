@@ -27,6 +27,6 @@ Com a imagem montada é possível roda-la com o seguinte comando:
 ```
 docker run -p 8080:8080 softplan/backend
 ```
-Pronto temos nosso back-end online!!!
+Pronto temos nosso back-end online na porta 8080!!!
 
 Agora o front-end
