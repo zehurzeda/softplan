@@ -45,7 +45,6 @@ export class EditarComponent implements OnInit {
 
   ngOnInit() {
     this.roleService.getAllRoles().subscribe(res => {
-      this.loading = true;
       this.roles = res;
     });
 
