@@ -18,6 +18,8 @@ export class ListaProcessosPendentesComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
+  private loading: boolean = true;
+
   constructor(
     private usuarioParecerProcessoService: UsuarioParecerProcessoService,
     private toastr: ToastrService,
@@ -38,11 +40,13 @@ export class ListaProcessosPendentesComponent implements OnInit, OnDestroy {
   }
 
   getProcessosPendentes() {
+    this.loading = true;
     this.usuarioParecerProcessoService
       .getAllPendentesByUsuarioLogado()
       .subscribe(
         res => {
           this.processosPendentes = res;
+          this.loading = false;
         },
         error => {
           console.log(error);

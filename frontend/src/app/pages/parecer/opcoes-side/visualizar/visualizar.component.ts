@@ -12,6 +12,8 @@ export class VisualizarComponent implements OnInit {
   
   private pareceres: ParecerDtoModel[] = []
   
+  private loading: boolean = true;
+
   constructor(
     private parecerService: ParecerService,
     private route: ActivatedRoute
@@ -21,6 +23,7 @@ export class VisualizarComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.parecerService.getAllByParecerProcessoId(routeParams.id).subscribe(res => {
         this.pareceres = res;
+        this.loading = false;
       })
     });
   }

@@ -5,35 +5,38 @@
   <mat-card-content>
     <mat-card>
       <mat-card-content>
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">Numero</th>
-                <th scope="col">Descrição</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let processoPendente of processosPendentes">
-                <td>{{processoPendente.processo.id}}</td>
-                <td>{{processoPendente.processo.numeroProcesso}}</td>
-                <td>{{processoPendente.processo.descricao}}</td>
-                <td>
-                  <div class="d-flex justify-content-center align-items-center">
-                    <button mat-icon-button matTooltip="Incluir parecer" routerLink="cadastrar-parecer/{{processoPendente.id}}" (click)="openSideNav()">
-                      <mat-icon color="primary">note_add</mat-icon>
-                    </button>
-                    <button mat-icon-button matTooltip="Visualizar pareceres" routerLink="visualizar-pareceres/{{processoPendente.processo.id}}" (click)="openSideNav()">
-                      <mat-icon color="primary">description</mat-icon>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div *ngIf="!loading">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Numero</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let processoPendente of processosPendentes">
+                  <td>{{processoPendente.processo.id}}</td>
+                  <td>{{processoPendente.processo.numeroProcesso}}</td>
+                  <td>{{processoPendente.processo.descricao}}</td>
+                  <td>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <button mat-icon-button matTooltip="Incluir parecer" routerLink="cadastrar-parecer/{{processoPendente.id}}" (click)="openSideNav()">
+                        <mat-icon color="primary">note_add</mat-icon>
+                      </button>
+                      <button mat-icon-button matTooltip="Visualizar pareceres" routerLink="visualizar-pareceres/{{processoPendente.processo.id}}" (click)="openSideNav()">
+                        <mat-icon color="primary">description</mat-icon>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <loading-spinner *ngIf="loading"></loading-spinner>
       </mat-card-content>
     </mat-card>
   </mat-card-content>

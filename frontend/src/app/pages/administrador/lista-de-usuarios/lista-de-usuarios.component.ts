@@ -20,6 +20,8 @@ export class ListaDeUsuariosComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
+  private loading: boolean = true;
+
   constructor(
     private usuarioService: UsuarioService,
     private toastr: ToastrService,
@@ -39,8 +41,13 @@ export class ListaDeUsuariosComponent implements OnInit, OnDestroy {
   }
 
   getUsuarios() {
+    this.loading = true;
     this.usuarioService.getAllUsuarios().subscribe(res => {
       this.usuarios = res;
+      this.loading = false;
+    }, error => {
+      console.log(error);
+      this.toastr.error('Erro ao buscar usuários!');
     });
   }
 

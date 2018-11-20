@@ -5,27 +5,30 @@
 </div>
 <div class="row">
   <div class="col">
-    <form class="form-content" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
-      <mat-form-field>
-        <input matInput formControlName="nome" placeholder="Nome" required/>
-        <mat-error *ngIf="form.nome.hasError('required')">Favor informe o nome!</mat-error>
-        <mat-error *ngIf="form.nome.hasError('minLength')">E-mail inválido!</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="email" placeholder="Email" required/>
-        <mat-error *ngIf="form.email.hasError('required')">Favor informe o e-mail!</mat-error>
-        <mat-error *ngIf="form.email.hasError('email')">E-mail inválido!</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="senha" type="password" placeholder="Senha"/>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Perfil" [compareWith]="compareFn" formControlName="roles" multiple required>
-          <mat-option *ngFor="let role of roles" [value]="role">{{role.nome}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.roles.hasError('required')">Favor informe ao menos um perfil!</mat-error>
-      </mat-form-field>
-      <button mat-flat-button color="primary" class="mt-2 btn-block"><mat-icon>check</mat-icon></button>
-    </form>
+    <div *ngIf="!loading">
+      <form class="form-content" [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput formControlName="nome" placeholder="Nome" required/>
+          <mat-error *ngIf="form.nome.hasError('required')">Favor informe o nome!</mat-error>
+          <mat-error *ngIf="form.nome.hasError('minLength')">E-mail inválido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="email" placeholder="Email" required/>
+          <mat-error *ngIf="form.email.hasError('required')">Favor informe o e-mail!</mat-error>
+          <mat-error *ngIf="form.email.hasError('email')">E-mail inválido!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="senha" type="password" placeholder="Senha"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Perfil" [compareWith]="compareFn" formControlName="roles" multiple required>
+            <mat-option *ngFor="let role of roles" [value]="role">{{role.nome}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.roles.hasError('required')">Favor informe ao menos um perfil!</mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary" class="mt-2 btn-block"><mat-icon>check</mat-icon></button>
+      </form>
+    </div>
+    <loading-spinner *ngIf="loading"></loading-spinner>
   </div>
 </div>

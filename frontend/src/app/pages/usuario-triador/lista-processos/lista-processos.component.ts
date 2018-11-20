@@ -19,6 +19,8 @@ export class ListaProcessosComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
+  private loading: boolean = true;
+
   constructor(
     private processoService: ProcessoService,
     private toastr: ToastrService,
@@ -37,8 +39,10 @@ export class ListaProcessosComponent implements OnInit, OnDestroy {
   }
 
   getProcessos() {
+    this.loading = true;
     this.processoService.getAllProcessos().subscribe(res => {
       this.processos = res;
+      this.loading = false;
     }, error => {
       console.log(error);
       this.toastr.error("Erro ao buscar processos!!");

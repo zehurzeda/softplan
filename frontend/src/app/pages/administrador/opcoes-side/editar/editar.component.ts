@@ -24,6 +24,8 @@ export class EditarComponent implements OnInit {
 
   private id: number;
 
+  private loading: boolean = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
@@ -43,6 +45,7 @@ export class EditarComponent implements OnInit {
 
   ngOnInit() {
     this.roleService.getAllRoles().subscribe(res => {
+      this.loading = true;
       this.roles = res;
     });
 
@@ -53,6 +56,7 @@ export class EditarComponent implements OnInit {
           this.form.email.setValue(res.email);
           this.form.roles.setValue(res.roles);
           this.id = res.id;
+          this.loading = false;
         },
         error => {
           if(error.status != 403){
