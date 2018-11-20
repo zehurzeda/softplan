@@ -18,15 +18,29 @@ mvn clean install -DskipTests
 ```
 (É necessário rodar com o comando "-DskipTests" pois uma dependência do spring-boot está desatualizada)
 
-Após isso é possível montar a imagem docker para rodar o back-end com o seguinte comando a partir da pasta backend/:
+Após isso é possível montar os containers docker com as imagens que foram criadas pelo maven
+
+#### Container Back-end
 
 ```
-mvn dockerfile:build -DskipTests
+docker run -d -p 8080:8080 softplan/backend
 ```
-Com a imagem montada é possível roda-la com o seguinte comando:
-```
-docker run -p 8080:8080 softplan/backend
-```
-Pronto temos nosso back-end online na porta 8080!!!
 
-Agora o front-end
+#### Container Front-end
+
+```
+docker run -d -p 4200:80 softplan/frontend
+```
+
+Pronto temos a aplicação online!!
+
+## Acessando a aplicação
+
+Agora que nossa aplicação está online podesmo acessa-la pelo link:
+
+[localhost:4200](http://localhost:4200)
+
+e utilizar as seguintes credenciais para realizar o login:
+
+* email: admin@softplan.com.br
+* senha: admin
