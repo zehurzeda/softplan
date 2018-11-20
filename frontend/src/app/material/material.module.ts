@@ -25,6 +25,7 @@ import * as Material from "@angular/material";
     Material.MatSidenavModule,
     Material.MatSelectModule,
     Material.MatListModule,
+    Material.MatTooltipModule
   ],
   exports: [
     Material.MatToolbarModule,
@@ -47,6 +48,7 @@ import * as Material from "@angular/material";
     Material.MatSidenavModule,
     Material.MatSelectModule,
     Material.MatListModule,
+    Material.MatTooltipModule
   ],
   declarations: []
 })

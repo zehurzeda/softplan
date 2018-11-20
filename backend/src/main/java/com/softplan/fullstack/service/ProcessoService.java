@@ -52,6 +52,8 @@ public class ProcessoService {
 		}
 		
 		processo.setId(id);
+		processo.setCriador(anterior.getCriador());
+		processo.setHoraCriacao(anterior.getHoraCriacao());
 		
 		return this.repository.save(processo);
 	}

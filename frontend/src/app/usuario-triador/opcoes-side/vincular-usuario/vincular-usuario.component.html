@@ -1,3 +1,30 @@
-<p>
-  vincular-usuario works!
-</p>
+<div class="row">
+  <div class="col d-flex justify-content-center text-center">
+    <h3>Víncular Usuário</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div *ngIf="!loading">
+      <div *ngIf="usuarios.length > 0; else elseBlock">
+        <div class="list-usuario">
+          <mat-selection-list #list [(ngModel)]="selectedOptions">
+            <mat-list-option *ngFor="let usuario of usuarios" [value]="usuario">
+              {{usuario.nome}}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <button mat-flat-button color="primary" class="mt-2 btn-block" (click)="onClick()"><mat-icon>check</mat-icon></button>
+      </div>
+      <ng-template #elseBlock>
+        <div class="row" style="max-width: 250px">
+          <div class="col d-flex justify-content-center text-center">
+            Não há usuários do tipo FINALIZADOR que não estão vinculados ao processo!
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <loading-spinner *ngIf="loading"></loading-spinner>
+  </div>
+</div>
+  

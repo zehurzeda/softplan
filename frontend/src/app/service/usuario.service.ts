@@ -3,7 +3,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { retry, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
+export enum Roles {
+  ADMIN = 1,
+  TRIADOR = 2,
+  FINALIZADOR = 3
+}
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +27,12 @@ export class UsuarioService {
 
   getAllUsuarios(): Observable<UsuarioModel[]> {
     return this.http.get<UsuarioModel[]>(`${this.route}`);
+  }
+
+  getAllUsuariosFinalizadoresNaoVinculadosAoProcesso(idProcesso: number): Observable<UsuarioModel[]>{
+    return this.http.get<UsuarioModel[]>(`${this.route}/role/${Roles[3]}`, {params: {
+      idProcesso: idProcesso ? idProcesso.toString() : ''
+    }})
   }
 
   getUsuarioById(id): Observable<UsuarioModel> {

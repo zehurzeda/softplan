@@ -9,4 +9,5 @@ import com.softplan.fullstack.model.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	Usuario findByEmail(String email);
 	List<Usuario> findAllByRoles_Nome(String roleNome);
+	List<Usuario> findAllByRoles_NomeAndPareceresUsuarioIsNullOrPareceresUsuario_ProcessoIdIsNot(String roleNome, long idProcesso);
 }

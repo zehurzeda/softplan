@@ -33,13 +33,13 @@
                   <td>{{processo.descricao}}</td>
                   <td>
                     <div class="d-flex justify-content-center align-items-center">
-                      <button mat-icon-button>
+                      <button mat-icon-button matTooltip="Víncular Usuários" routerLink="vincular/{{processo.id}}" (click)="openSideNav()">
                         <mat-icon color="primary">person_add</mat-icon>
                       </button>
-                      <button mat-icon-button>
+                      <button mat-icon-button matTooltip="Desvíncular Usuários" routerLink="desvincular/{{processo.id}}" (click)="openSideNav()">
                         <mat-icon color="warn">person_outline</mat-icon>
                       </button>
-                      <button mat-icon-button routerLink="editar/{{processo.id}}" (click)="openSideNav()">
+                      <button mat-icon-button matTooltip="Editar" routerLink="editar/{{processo.id}}" (click)="openSideNav()">
                         <mat-icon color="primary">edit</mat-icon>
                       </button>
                     </div>

@@ -1,7 +1,6 @@
 package com.softplan.fullstack.model;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UsuarioParecerProcesso {
@@ -23,6 +24,7 @@ public class UsuarioParecerProcesso {
 	private Usuario usuario;
 
 	@OneToOne(mappedBy = "parecerProcesso", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@JsonIgnore
 	private Parecer parecer;
 
 	@NotNull

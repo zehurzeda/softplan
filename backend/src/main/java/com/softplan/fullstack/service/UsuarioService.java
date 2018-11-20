@@ -33,7 +33,11 @@ public class UsuarioService {
 	public List<Usuario> getAllUsuariosByRole(final String role) {
 		return repository.findAllByRoles_Nome(role);
 	}
-
+	
+	public List<Usuario> getAllUsuariosByRoleAndIdProcessoIsDiferent(final String role, final long idProcesso){
+		return repository.findAllByRoles_NomeAndPareceresUsuarioIsNullOrPareceresUsuario_ProcessoIdIsNot(role, idProcesso);
+	}
+	
 	public Usuario getUsuarioPorId(long id) {
 		Optional<Usuario> usuario = this.repository.findById(id);
 

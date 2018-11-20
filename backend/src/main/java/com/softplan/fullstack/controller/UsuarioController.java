@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.softplan.fullstack.dto.UsuarioDTO;
@@ -30,8 +31,8 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "/role/{role}", method = RequestMethod.GET)
-	public List<Usuario> getAllUsuariosByRole(@PathVariable String role) {
-		return this.service.getAllUsuariosByRole(role);
+	public List<Usuario> getAllUsuariosByRoleAndIdProcessoIsDiferent(@PathVariable String role, @RequestParam("idProcesso") long idProcesso) {
+		return this.service.getAllUsuariosByRoleAndIdProcessoIsDiferent(role, idProcesso);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -26,8 +26,12 @@ export class ProcessoService {
     return this.http.get<ProcessoModel>(`${this.route}/${id}`);
   }
 
-  salvarProcesso(usuario: ProcessoModel): Observable<ProcessoModel> {
-    return this.http.post<ProcessoModel>(this.route, usuario);
+  salvarProcesso(processo: ProcessoModel): Observable<ProcessoModel> {
+    return this.http.post<ProcessoModel>(this.route, processo);
+  }
+
+  alterarProcesso(idProcesso: number, processo: ProcessoModel): Observable<ProcessoModel> {
+    return this.http.put<ProcessoModel>(`${this.route}/${idProcesso}`, processo);
   }
 
   atualizarProcessos() {

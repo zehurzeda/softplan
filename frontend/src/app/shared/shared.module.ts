@@ -12,15 +12,18 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcaoComponent } from './components/acao/acao.component';
 import { SideNavService } from '../service/side-nav.service';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AcoesSidenavComponent,
     AcaoComponent,
+    LoadingSpinnerComponent
   ],
   exports: [
     AcoesSidenavComponent,
-    AcaoComponent
+    AcaoComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
