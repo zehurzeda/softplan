@@ -1,6 +1,7 @@
 import { AuthenticationService } from './../service/authentication.service';
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { AuthGroup } from '../model/authorization.types';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
@@ -9,14 +10,28 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate() {
+  canActivate(route: ActivatedRouteSnapshot) {
     if (this.authService.isLoggedIn()) {
-      return true;
+      if(route.data['auth']) {
+        return this.hasRequiredPermission(route.data['auth'])
+      } else {
+        return true;
+      }
     } else {
       this.authService.logout();
       this.router.navigate(['login']);
 
       return false;
     }
+  }
+
+  protected hasRequiredPermission(authGroup: AuthGroup): Promise<boolean> | boolean {
+
+    if (authGroup) {
+      return (this.authService.hasPermission(authGroup));
+    } else {
+      return (this.authService.hasPermission(null));
+    }
+    
   }
 }

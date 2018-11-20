@@ -1,16 +1,1 @@
-<app-toolbar (toogleSidenav)="toogleSidenav()"></app-toolbar>
-<div class="page-container">
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav [mode]="mode.value" class="sidenav p-0">
-      <mat-nav-list>
-        <a mat-list-item [routerLink]="[ '/home' ]" routerLinkActive="active">Home</a>
-        <a mat-list-item [routerLink]="[ '/administrador' ]" routerLinkActive="active">Admin</a>
-        <a mat-list-item [routerLink]="[ '/usuario-triador' ]" routerLinkActive="active">Triagem</a>
-        <a mat-list-item [routerLink]="[ '/home' ]" routerLinkActive="active">Parecer</a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="sidenav-content">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+<router-outlet></router-outlet>

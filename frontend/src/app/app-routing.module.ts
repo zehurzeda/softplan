@@ -2,26 +2,23 @@ import { AuthGuard } from './_guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: 'administrador', loadChildren: './administrador/administrador.module#AdministradorModule', canActivate: [AuthGuard]
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
+  { path: 'login', component: LoginComponent },
   {
-    path: 'usuario-triador', loadChildren: './usuario-triador/usuario-triador.module#UsuarioTriadorModule', canActivate: [AuthGuard]
-  },
-  {
-    path: '', redirectTo: '/home', pathMatch: 'full'
-  },
-  {
-    path: 'home', component: HomeComponent, canActivate: [AuthGuard]
-  },
-  {path: 'login', component: LoginComponent}
+    path: 'pages',
+    loadChildren: './pages/pages.module#PagesModule',
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

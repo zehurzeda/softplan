@@ -1,4 +1,3 @@
-import { UsuarioService } from './usuario.service';
 import { environment } from 'src/environments/environment';
 import { tap, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -6,22 +5,25 @@ import { Injectable } from '@angular/core';
 import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { AuthGroup } from '../model/authorization.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  constructor(private http: HttpClient, private router: Router, private usuarioService: UsuarioService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   private setSession(authResult) {
-    console.log(authResult);
     const token = authResult.token;
     const payload: any = jwtDecode(token);
     const expiresAt = moment.unix(payload.exp);
-    
+
     localStorage.setItem('token', token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    localStorage.setItem('roles', payload.scopes);
   }
 
   login(email: string, senha: string) {
@@ -31,7 +33,9 @@ export class AuthenticationService {
         senha: senha
       })
       .pipe(
-        tap(response => this.setSession(response)),
+        tap(response => {
+          this.setSession(response);
+        }),
         shareReplay()
       );
   }
@@ -40,6 +44,10 @@ export class AuthenticationService {
     return localStorage.getItem('token');
   }
 
+  get roles(): string[] {
+    return localStorage.getItem('roles').toString().split(',');
+  }
+ 
   getExpiration() {
     const expiration = localStorage.getItem('expires_at');
     const expiresAt = JSON.parse(expiration);
@@ -59,5 +67,12 @@ export class AuthenticationService {
 
   isLoggedOut() {
     return !this.isLoggedIn();
+  }
+
+  hasPermission(authGroup: AuthGroup) {
+    if (this.roles && this.roles.find(role => {return role === authGroup})) {
+      return true;
+    }
+    return false;
   }
 }

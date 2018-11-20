@@ -13,10 +13,13 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0;
+  top: 112px;
   bottom: 0;
   left: 0;
   right: 0;
+  @media screen and (max-device-width: 720px){
+    top: 104px;
+  }
 }
 
 .sidenav-container {
@@ -92,27 +95,6 @@ button {
 
 .form-content > * {
   width: 100%;
-}
-
-app-root {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  @media screen and (max-device-width: 720px){
-    top: 56px;
-  }
-}
-
-app-toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
 }
 
 .cadastro-content {

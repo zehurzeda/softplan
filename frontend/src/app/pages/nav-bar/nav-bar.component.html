@@ -1,0 +1,16 @@
+<nav mat-tab-nav-bar backgroundColor="primary" class="nav-bar">
+  <div class="d-flex justify-content-between nav-bar">
+    <a
+      mat-tab-link
+      *ngFor="let link of links"
+      [routerLink]="link.path"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [disabled]="getDisabled(link.role)"
+      class="flex-fill"
+    >
+      {{ link.label }}
+    </a>
+  </div>
+</nav>

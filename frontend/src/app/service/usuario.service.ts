@@ -57,7 +57,7 @@ export class UsuarioService {
     this.usuariosSource.next();
   }
 
-  getRolesUsuarioLogadio(): Observable<string> {
-    return this.http.get<string>(`${this.route}/roles`);
+  getRolesUsuarioLogado(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.route}/roles`);
   }
 }

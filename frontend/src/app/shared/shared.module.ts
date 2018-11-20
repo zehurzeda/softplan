@@ -13,17 +13,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcaoComponent } from './components/acao/acao.component';
 import { SideNavService } from '../service/side-nav.service';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { HideIfUnauthenticatedDirective } from './directives/hide-if-unauthenticated.directive';
 
 @NgModule({
   declarations: [
     AcoesSidenavComponent,
     AcaoComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HideIfUnauthenticatedDirective
   ],
   exports: [
     AcoesSidenavComponent,
     AcaoComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HideIfUnauthenticatedDirective
   ],
   imports: [
     CommonModule,
