@@ -36,7 +36,7 @@ Pronto temos a aplicação online!!
 
 ## Acessando a aplicação
 
-Agora que nossa aplicação está online podesmo acessa-la pelo link:
+Agora que nossa aplicação está online podemos acessa-la pelo link:
 
 [localhost:4200](http://localhost:4200)
 
